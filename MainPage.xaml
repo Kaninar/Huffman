@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Huffman.MainPage"
+             Padding="5">
+    <Grid x:Name="LayoutGrid"
+          ColumnDefinitions="410,600"
+          RowDefinitions="100,500">
+        <Border Grid.Column="0"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                StrokeThickness="3"
+                Stroke="White">
+            <VerticalStackLayout >
+                <Editor x:Name="BaseInputEditor"
+            TextChanged="BaseInputEditor_TextChanged"/>
+                <Button x:Name="buttonMakeTree"  
+                        IsEnabled="False"
+                        Text="Деревезировать"
+                        FontSize="20"
+                        Clicked="buttonMakeTree_Clicked"
+                        TextColor="Black"
+                        BackgroundColor="DimGray"/>
+            </VerticalStackLayout>
+        </Border>
+        <Border Grid.Column="0"
+                Grid.Row="1"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                StrokeThickness="3"
+                Stroke="White">
+            <Grid ColumnDefinitions="100, 100, 100"
+                  RowDefinitions="25, 300"
+                  ColumnSpacing="50">
+                <Label Text="Символ"
+                       HorizontalTextAlignment="Center"
+                       FontSize="20"
+                       Grid.Column="0"
+                       Grid.Row="0"/>
+                <Label Text="Частота"
+                       HorizontalTextAlignment="Center"
+                       FontSize="20"
+                       Grid.Column="1"
+                       Grid.Row="0"/>
+                <Label Text="Код"
+                       HorizontalTextAlignment="Center"
+                       FontSize="20"
+                       Grid.Column="2"
+                       Grid.Row="0"/>
+                <ListView x:Name="TreeView"
+                          HeightRequest="500"
+                          HorizontalOptions="Start"
+                          Grid.Column="0"
+                          Grid.Row="1"
+                          Grid.ColumnSpan="3">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <Grid ColumnDefinitions="100, 100, 100"
+                                      RowDefinitions="25"
+                                      ColumnSpacing="50">
+                                    <Label Text="{Binding Key}"
+                                           Grid.Column="0" 
+                                           Grid.Row="0"
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="20"/>
+                                    <Label Text="{Binding Path=Value[0]}"
+                                           Grid.Column="1"
+                                           Grid.Row="0"
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="20"/>
+                                    <Label Text="{Binding Path=Value[1]}"
+                                           Grid.Column="2"
+                                           Grid.Row="0"
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="20"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                StrokeThickness="3"
+                Stroke="White">
+            <Grid ColumnDefinitions="50*, 50*"
+                  RowDefinitions="50, *, 40">
+                <Grid Grid.ColumnSpan="2"
+                      Grid.Column="0"
+                      Grid.Row="0"
+                      ColumnDefinitions="40*,20*,40*"
+                      RowDefinitions="50">
+                    <Button x:Name="FromButton"  Grid.Column="0" 
+                            IsEnabled="False" 
+                            Text="Текст" 
+                            FontSize="Medium"/>
+                    <Button x:Name="ButtonChange" 
+                            Clicked="ButtonChange_Clicked"
+                            Grid.Column="1" 
+                            Text="⇆" 
+                            FontSize="Large"/>
+                    <Button x:Name="ToButton" Grid.Column="2" 
+                            IsEnabled="False" 
+                            Text="Код" 
+                            FontSize="Medium"/>
+                </Grid>
+                <Editor x:Name="InputEditor"
+                        TextChanged="InputEditor_TextChanged"
+                        Grid.Column="0"
+                        Grid.Row="1"/>
+                <Editor x:Name="OutputEditor"
+                        Grid.Column="1"
+                        Grid.Row="1" 
+                        IsReadOnly="True"/>
+                <Button x:Name="TranslateButton"
+                        Clicked="TranslateButton_Clicked"
+                        Text="Перевести"
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        IsEnabled="False"
+                        FontSize="Micro"
+                        TextColor="Black"
+                        BorderColor="DimGray"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>
